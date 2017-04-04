@@ -36,12 +36,16 @@ HASS_API = "http://%s:8123/api/" % HASS_IP
 # If a password is required to access the API, set it in the form of "password"
 HASS_API_PASSWORD = os.environ.get('HASS_PASSWORD')
 # To enable authentication, set the credentials in the form of "username:password"
-CREDENTIALS = None
+CREDENTIALS = os.environ.get('CONF_CREDENTIALS')
 # Limit access to the configurator by adding allowed IP addresses / networks to the list,
 # e.g ALLOWED_NETWORKS = ["192.168.0.0/24", "172.16.47.23"]
-ALLOWED_NETWORKS = []
+ALLOWED_NETWORKS = os.environ.get('CONF_ALLOWED_NETWORKS')
+if ALLOWED_NETWORKS == None:
+    ALLOWED_NETWORKS = []
 # List of statically banned IP addresses, e.g. ["1.1.1.1", "2.2.2.2"]
-BANNED_IPS = []
+BANNED_IPS = os.environ.get('CONF_BANNED_IPS')
+if BANNED_IPS == None:
+    BANNED_IPS = []
 # Ban IPs after n failed login attempts. Restart service to reset banning. The default of `0` disables this feature.
 BANLIMIT = 0
 # Enable git integration. GitPython (https://gitpython.readthedocs.io/en/stable/) has to be installed.
